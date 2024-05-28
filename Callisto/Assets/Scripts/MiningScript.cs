@@ -15,6 +15,8 @@ public class MiningScript : MonoBehaviour
     public float miningRange = 7.0f;
     private float spawnRadius;
 
+    public GameObject miningParticlesPrefab;
+
     private GameObject player;
 
     void Start()
@@ -55,6 +57,8 @@ public class MiningScript : MonoBehaviour
                 SpawnItem(zlotoPrefab);
             }
 
+            PlayMiningParticles();
+
             TakeDamage();
 
         }
@@ -72,14 +76,43 @@ public class MiningScript : MonoBehaviour
 
         health -= 2;
 
-        if (health <= 0) {
+        if (health <= 0)
+        {
 
             Destroy(gameObject);
 
         }
 
         Debug.Log(health.ToString());
-    
+
+    }
+
+    void PlayMiningParticles()
+    {
+        if (miningParticlesPrefab != null)
+        {
+
+            GameObject particles = Instantiate(miningParticlesPrefab, player.transform.position, Quaternion.identity);
+            ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
+            if (particleSystem != null)
+            {
+                particleSystem.Play();
+            }
+            else
+            {
+                ParticleSystem[] childParticleSystems = particles.GetComponentsInChildren<ParticleSystem>();
+                foreach (ParticleSystem ps in childParticleSystems)
+                {
+                    ps.Play();
+                }
+            }
+            // Opcjonalnie zniszcz particle system po zakoñczeniu dzia³ania
+            Destroy(particles, particleSystem.main.duration + particleSystem.main.startLifetime.constantMax);
+        }
+        else
+        {
+            Debug.LogWarning("Mining particles prefab is not assigned.");
+        }
     }
 
 }
