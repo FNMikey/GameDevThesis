@@ -16,7 +16,7 @@ public class FurnaceManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S)) // Example trigger to start smelting
+        if (Input.GetKeyDown(KeyCode.S)) 
         {
             StartSmelting();
         }
@@ -34,8 +34,6 @@ public class FurnaceManager : MonoBehaviour
     bool CheckOreAndFuel(out string inventoryContents)
     {
         inventoryContents = "";
-
-        // Debugging: Check if the slots themselves are not null
         if (fuelSlot == null)
         {
             Debug.Log("Fuel slot is null");
@@ -49,8 +47,6 @@ public class FurnaceManager : MonoBehaviour
 
         InventoryItem fuelSlotItem = fuelSlot.GetComponentInChildren<InventoryItem>();
         InventoryItem oreSlotItem = oreSlot.GetComponentInChildren<InventoryItem>();
-
-        // Debugging: Check if the items in the slots are not null
         if (fuelSlotItem == null)
         {
             Debug.Log("Fuel slot item is missing");
@@ -122,30 +118,26 @@ public class FurnaceManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(time / 5);
-
-            // Decrease fuel count
             if (fuelSlotItem != null)
             {
                 fuelSlotItem.count--;
                 if (fuelSlotItem.count <= 0)
                 {
                     Destroy(fuelSlotItem.gameObject);
-                    fuelSlotItem = null; // Prevent further access to this now-null object
+                    fuelSlotItem = null; 
                 }
                 else
                 {
                     fuelSlotItem.RefreshCount();
                 }
             }
-
-            // Decrease ore count
             if (oreSlotItem != null)
             {
                 oreSlotItem.count--;
                 if (oreSlotItem.count <= 0)
                 {
                     Destroy(oreSlotItem.gameObject);
-                    oreSlotItem = null; // Prevent further access to this now-null object
+                    oreSlotItem = null; 
                 }
                 else
                 {
@@ -167,8 +159,6 @@ public class FurnaceManager : MonoBehaviour
             
         }
     }
-
-    // New method to be linked with the "Create" button
     public void CreateNewObject()
     {
         StartSmelting();
