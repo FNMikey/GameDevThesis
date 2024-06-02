@@ -3,20 +3,22 @@ using System.Collections.Generic;
 
 public class Chest : MonoBehaviour
 {
-    [SerializeField] public Transform player;  
-    public InventoryManager inventoryMenager;
-    public GameObject chestUI; 
-    public float interactionDistance = 3f;  
-    private bool isOpen = false;  
 
-    public InventorySlot[] chestSlots;  
+    public Transform player;  
+        public InventoryManager inventoryMenager;
+    public GameObject chestUI;  
+    public float interactionDistance = 3f;  
+    private bool isOpen = false; 
+
+    public InventorySlot[] chestSlots; 
     private List<InventoryItem> chestItems = new List<InventoryItem>();
 
     void Start()
     {
         if (chestUI != null)
         {
-            chestUI.SetActive(false);  
+
+            chestUI.SetActive(false); 
         }
     }
 
@@ -44,11 +46,10 @@ public class Chest : MonoBehaviour
 
     private void ToggleChest()
     {
-        isOpen = !isOpen;  // Toggle the state
+        isOpen = !isOpen; 
         if (isOpen)
         {
             Debug.Log("Chest opened!");
-            // Collect items when the chest is opened
         }
         else
         {
@@ -70,21 +71,21 @@ public class Chest : MonoBehaviour
         {
             if (chestUI != null)
             {
-                chestUI.SetActive(true);  // Show the UI when the chest is opened
+                chestUI.SetActive(true); 
             }
         }
         else
         {
             if (chestUI != null)
             {
-                chestUI.SetActive(false);  // Hide the UI when the chest is closed
+                chestUI.SetActive(false); 
             }
         }
     }
 
 public Dictionary<string, int> GetItemsFromChestWithCounts()
 {
-    Dictionary<string, int> itemCounts = new Dictionary<string, int>();  // Dictionary to store item counts
+    Dictionary<string, int> itemCounts = new Dictionary<string, int>();  
 
     if (chestSlots == null)
     {
@@ -92,7 +93,6 @@ public Dictionary<string, int> GetItemsFromChestWithCounts()
         return itemCounts;
     }
 
-    // Check each slot in the chest
     for (int i = 0; i < chestSlots.Length; i++)
     {
         InventorySlot slot = chestSlots[i];
@@ -101,8 +101,6 @@ public Dictionary<string, int> GetItemsFromChestWithCounts()
         if (itemInSlot != null && itemInSlot.item != null)
         {
             string itemName = itemInSlot.item.itemName;
-
-            // Add item counts to the dictionary
             if (itemCounts.ContainsKey(itemName))
             {
                 itemCounts[itemName] += itemInSlot.count;
@@ -119,22 +117,20 @@ public Dictionary<string, int> GetItemsFromChestWithCounts()
             Debug.Log($"Slot {i}: Empty");
         }
     }
-
-    // Display the total count of each item
     foreach (var item in itemCounts)
     {
         Debug.Log($"Item: {item.Key}, Total Quantity: {item.Value}");
     }
 
-    return itemCounts;  // Return the dictionary containing item names and their respective counts
+    return itemCounts;  
 }
 
     public bool Openchest(){
         if(chestUI.activeSelf){
-                        Debug.Log("OTWARTA SKRZYNIA");
+                        Debug.Log("Chest is opnen");
                   return true;
         }else{
-              Debug.Log("ZAMKNIETA SKRZYNIA");
+              Debug.Log("Chest is close");
             return false;
         }
     }

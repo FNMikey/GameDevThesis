@@ -34,7 +34,6 @@ public class FurnaceManager : MonoBehaviour
     bool CheckOreAndFuel(out string inventoryContents)
     {
         inventoryContents = "";
-
         if (fuelSlot == null)
         {
             Debug.Log("Fuel slot is null");
@@ -119,28 +118,26 @@ public class FurnaceManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(time / 5);
-
             if (fuelSlotItem != null)
             {
                 fuelSlotItem.count--;
                 if (fuelSlotItem.count <= 0)
                 {
                     Destroy(fuelSlotItem.gameObject);
-                    fuelSlotItem = null;
+                    fuelSlotItem = null; 
                 }
                 else
                 {
                     fuelSlotItem.RefreshCount();
                 }
             }
-
             if (oreSlotItem != null)
             {
                 oreSlotItem.count--;
                 if (oreSlotItem.count <= 0)
                 {
                     Destroy(oreSlotItem.gameObject);
-                    oreSlotItem = null;
+                    oreSlotItem = null; 
                 }
                 else
                 {
@@ -162,7 +159,6 @@ public class FurnaceManager : MonoBehaviour
             
         }
     }
-
     public void CreateNewObject()
     {
         StartSmelting();
