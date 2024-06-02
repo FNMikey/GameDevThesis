@@ -131,7 +131,7 @@ public class Crafting : MonoBehaviour
         pickaxeRockRecipe.ingredients = new List<Ingredient>
         {
             new Ingredient { name = "Stick", quantity = 2 },
-            new Ingredient { name = "Rock", quantity = 3 }
+            new Ingredient { name = "Rock", quantity = 2 }
         };
         bool success = inventoryManager.TryCraftItem(pickaxeRockRecipe);
         if (success)
