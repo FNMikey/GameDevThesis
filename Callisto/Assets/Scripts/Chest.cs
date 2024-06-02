@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Chest : MonoBehaviour
 {
+
     public Transform player;  
         public InventoryManager inventoryMenager;
     public GameObject chestUI;  
@@ -16,6 +17,7 @@ public class Chest : MonoBehaviour
     {
         if (chestUI != null)
         {
+
             chestUI.SetActive(false); 
         }
     }

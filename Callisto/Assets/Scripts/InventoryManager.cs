@@ -196,6 +196,7 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
             else if (countAvailableFromChest >= countNeeded)
             {
                 chestCounts[ingredient.name] -= countNeeded;
+
                 remainingChestItems[ingredient.name] = chestCounts[ingredient.name];
 
                 if (usedChestItems.ContainsKey(ingredient.name))
@@ -242,7 +243,6 @@ public bool CheckRecipeIngredients(Recipe recipe, out string inventoryContents, 
             }
         }
     }
-
     if (missingItems.Count > 0)
     {
         inventoryContents += "\nMissing items:\n";
