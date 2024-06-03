@@ -11,7 +11,7 @@ public class Crafting : MonoBehaviour
     private Recipe pickaxeIronRecipe = new Recipe();
     private Recipe axeRockRecipe = new Recipe();
     private Recipe axeIronRecipe = new Recipe();
-    private Recipe swordIronRecipe = new Recipe();
+    private Recipe goldFigureRecipe = new Recipe();
     private Recipe furnaceRecipe = new Recipe();
     public void CraftFurnace()
     {
@@ -34,26 +34,25 @@ public class Crafting : MonoBehaviour
             Debug.Log("Piec nie zostal stworzony");
         }
     }
-    public void CraftSwordIron()
+    public void CraftGoldFigure()
     {
-        swordIronRecipe.ingredients = new List<Ingredient>
+        goldFigureRecipe.ingredients = new List<Ingredient>
         {
-            new Ingredient { name = "Stick", quantity = 3 },
-            new Ingredient { name = "Iron", quantity = 6 }
+            new Ingredient { name = "Gold", quantity = 5 }
         };
-        bool success = inventoryManager.TryCraftItem(swordIronRecipe);
+        bool success = inventoryManager.TryCraftItem(goldFigureRecipe);
         if (success){
              if (inventoryManager.IsInventoryFull() && chest.Openchest()) {
                     chest.AddItemToChest(item);
-                        Debug.Log("Piec zostal miecz w skrzynce");
+                        Debug.Log("zlota figurka jest  w skrzynce");
             }else{
                     inventoryManager.AddItem(item);
-                        Debug.Log("Miecz zostal stworzony");
+                        Debug.Log("zlota figurka zostal stworzony");
             }
         }
         else
         {
-            Debug.Log("Miecz nie zostal stworzony");
+            Debug.Log("zlota figurka nie zostala stworzony");
         }
     }
     public void CraftRockAxe()
@@ -131,7 +130,7 @@ public class Crafting : MonoBehaviour
         pickaxeRockRecipe.ingredients = new List<Ingredient>
         {
             new Ingredient { name = "Stick", quantity = 2 },
-            new Ingredient { name = "Rock", quantity = 2 }
+            new Ingredient { name = "Rock", quantity = 3 }
         };
         bool success = inventoryManager.TryCraftItem(pickaxeRockRecipe);
         if (success)
